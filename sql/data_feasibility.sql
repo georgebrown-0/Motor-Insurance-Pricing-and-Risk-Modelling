@@ -76,4 +76,10 @@ WHERE freq.ClaimNb>0
 SELECT SUM(ClaimNB) AS total_reported_claims, SUM(Exposure) AS total_exposure_years, SUM(ClaimNB)/SUM(Exposure) AS claims_per_year
 FROM fre_mtpl2_frequency;
 
+SELECT COUNT(*) AS n_exposure_over_1year
+FROM fre_mtpl2_frequency
+WHERE Exposure>1;
+
+SELECT MAX(Exposure) AS max_exposure
+FROM fre_mtpl2_frequency;
 
