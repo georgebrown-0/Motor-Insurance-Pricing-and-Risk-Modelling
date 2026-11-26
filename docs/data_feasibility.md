@@ -48,8 +48,8 @@ A policy can have multiple severity records, so `IDpol` can repeat in the severi
 ## Issues
 
 - There are 195 rows in the severity table with no corresponding IDpol in the frequency table. These comes from 6 unique IDs.
-- The frequency table records claims with 0 payout (such as when the policyholder was not at fault), whereas the severity table records claims with strictly positive payouts. I found that 9117 policyholders have less appearances in the severity table than reported in ClaimNb. 668896 policyholders have the same number of appearances in the severity table as they do claims in the frequency table. 0 policyholders have more appearances in the severity table than reported in ClaimNb.
-- Of the 9117 policyholders with less appearances in severity than claims in frequency, 9116 of these do not appear in severity at all.
+- The frequency table records claims with 0 payout (such as when the policyholder was not at fault), whereas the severity table records claims with strictly positive payouts. I found that 9,117 policyholders have less appearances in the severity table than reported in ClaimNb. 668,896 policyholders have the same number of appearances in the severity table as they do claims in the frequency table. 0 policyholders have more appearances in the severity table than reported in ClaimNb.
+- Of the 9,117 policyholders with less appearances in severity than claims in frequency, 9116 of these do not appear in severity at all.
 
 ## Decision
 
@@ -57,4 +57,4 @@ I will keep all frequency policies, and exclude the 195 severity rows without a 
 
 ## Feasibility Baseline
 
-In the frequency table, a total of 36102 claims were made over 358499.45 policy-years, giving 0.1007 claims per policy-year.
+In the frequency table, a total of 36,102 claims were made over 358,499.45 policy-years, giving 0.1007 claims per policy-year.
