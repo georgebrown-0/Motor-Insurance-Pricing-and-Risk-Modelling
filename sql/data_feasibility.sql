@@ -72,3 +72,8 @@ LEFT JOIN fre_mtpl2_severity AS sev
     ON freq.IDpol = sev.IDpol
 WHERE freq.ClaimNb>0
     AND sev.IDpol IS NULL;
+
+SELECT SUM(ClaimNB) AS total_reported_claims, SUM(Exposure) AS total_exposure_years, SUM(ClaimNB)/SUM(Exposure) AS claims_per_year
+FROM fre_mtpl2_frequency;
+
+

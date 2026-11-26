@@ -2,7 +2,7 @@
 
 ## Source
 
-The two CSV files ([freMTPL2freq.csv](https://www.kaggle.com/datasets/floser/french-motor-claims-datasets-fremtpl2freq), [freMTPL2sev.csv](https://www.kaggle.com/datasets/floser/fremtpl2sev)) were downloaded from Kaggle on **25 November 2026**. Field definitions are based on the [CASdatasets reference](https://dutangc.github.io/CASdatasets/reference/freMTPL.html).
+The two CSV files ([freMTPL2freq.csv](https://www.kaggle.com/datasets/floser/french-motor-claims-datasets-fremtpl2freq), [freMTPL2sev.csv](https://www.kaggle.com/datasets/floser/fremtpl2sev)) were downloaded from Kaggle on **25 November 2026**. Field definitions are based on the [CASdatasets reference](https://dutangc.github.io/CASdatasets/reference/freMTPL.html). All data queries used in in this document can be found in sql/data_feasibility.md.
 
 | File | Reported rows | Columns | Intended row grain |
 | --- | ---: | ---: | --- |
@@ -54,3 +54,7 @@ A policy can have multiple severity records, so `IDpol` can repeat in the severi
 ## Decision
 
 I will keep all frequency policies, and exclude the 195 severity rows without a matching policy record. Policies without a severity match contribute zero recorded cost.
+
+## Feasibility Baseline
+
+In the frequency table, a total of 36102 claims were made over 358499.45 policy-years, giving 0.1007 claims per policy-year.
