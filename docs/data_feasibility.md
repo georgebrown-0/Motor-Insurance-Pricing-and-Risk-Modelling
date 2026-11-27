@@ -28,7 +28,7 @@ The two CSV files ([freMTPL2freq.csv](https://www.kaggle.com/datasets/floser/fre
 | `Density` | Population density in the driver's municipality, measured in inhabitants per square kilometre. |
 | `Region` | French region code based on the 1970–2015 classification. |
 
-This dataset is seen to have 0 null entries for IDpol. In fact, there are 0 null entries everywhere. All IDpol entries are unique. ClaimNb is non-negative, and Exposure is strictly positive.
+This dataset is seen to have 0 null entries for `IDpol`. In fact, there are 0 null entries everywhere. All `IDpol` entries are unique. `ClaimNb` is non-negative, and `Exposure` is strictly positive.
 
 ## Severity table
 
@@ -39,7 +39,7 @@ This dataset is seen to have 0 null entries for IDpol. In fact, there are 0 null
 | `IDpol` | Policy identifier. |
 | `ClaimAmount` | Recorded cost of the claim. Currency to be confirmed. |
 
-This table also has 0 null entries everywhere. ClaimAmount is positive everywhere.
+This table also has 0 null entries everywhere. `ClaimAmount` is positive everywhere.
 
 ## Table relationship
 
@@ -47,14 +47,16 @@ A policy can have multiple severity records, so `IDpol` can repeat in the severi
 
 ## Issues
 
-- There are 195 rows in the severity table with no corresponding IDpol in the frequency table. These comes from 6 unique IDs.
-- The frequency table records claims with 0 payout (such as when the policyholder was not at fault), whereas the severity table records claims with strictly positive payouts. I found that 9,117 policyholders have less appearances in the severity table than reported in ClaimNb. 668,896 policyholders have the same number of appearances in the severity table as they do claims in the frequency table. 0 policyholders have more appearances in the severity table than reported in ClaimNb.
+- There are 195 rows in the severity table with no corresponding `IDpol` in the frequency table. These comes from 6 unique IDs.
+- The frequency table records claims with 0 payout (such as when the policyholder was not at fault), whereas the severity table records claims with strictly positive payouts. I found that 9,117 policyholders have less appearances in the severity table than reported in `ClaimNb`. 668,896 policyholders have the same number of appearances in the severity table as they do claims in the frequency table. 0 policyholders have more appearances in the severity table than reported in `ClaimNb`.
 - Of the 9,117 policyholders with less appearances in severity than claims in frequency, 9116 of these do not appear in severity at all.
 - The official documentation states that the data was observed on a year, however 1,224 frequency records have exposure greater than 1, with a maximum of 2.01.
 
 ## Decision
 
 I will keep all frequency policies, and exclude the 195 severity rows without a matching policy record. Policies without a severity match contribute zero recorded cost.
+
+The Python pipeline derives `PaidClaimNb` by counting matched severity records for each `IDpol`. Policies with no matched severity record receive a count of zero and remain in the frequency dataset with their original exposure. We retain `ClaimNb` as the source count of reported claims. `PaidClaimNb` is the proposed frequency target for pricing because it counts the same positive-payout records used for severity modelling.
 
 ## Feasibility Baseline
 
