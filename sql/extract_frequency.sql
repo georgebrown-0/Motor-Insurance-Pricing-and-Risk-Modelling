@@ -1,2 +1,3 @@
 SELECT *
-FROM fre_mtpl2_frequency;
+FROM fre_mtpl2_frequency
+ORDER BY IDpol;

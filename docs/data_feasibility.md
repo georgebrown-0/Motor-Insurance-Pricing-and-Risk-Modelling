@@ -56,7 +56,7 @@ A policy can have multiple severity records, so `IDpol` can repeat in the severi
 
 I will keep all frequency policies, and exclude the 195 severity rows without a matching policy record. Policies without a severity match contribute zero recorded cost.
 
-The Python pipeline derives `PaidClaimNb` by counting matched severity records for each `IDpol`. Policies with no matched severity record receive a count of zero and remain in the frequency dataset with their original exposure. We retain `ClaimNb` as the source count of reported claims. `PaidClaimNb` is the proposed frequency target for pricing because it counts the same positive-payout records used for severity modelling.
+The Python pipeline derives `PaidClaimNb` by counting matched severity records for each `IDpol`. Policies with no matched severity record receive a count of zero and remain in the frequency dataset with their original exposure. I retain `ClaimNb` as the source count of reported claims. `PaidClaimNb` is the proposed frequency target for pricing because it counts the same positive-payout records used for severity modelling. This follows a similar approach seen on [scikit-learn Tweedie regression documentation](https://scikit-learn.org/stable/auto_examples/linear_model/plot_tweedie_regression_insurance_claims.html).
 
 ## Feasibility Baseline
 
