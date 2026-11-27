@@ -33,8 +33,5 @@ if __name__ == "__main__":
         frequency = load_frequency(connection)
         severity = load_severity(connection)
 
-    print("Frequency rows:", len(frequency))
-    print("Frequency IDs unique:", frequency["IDpol"].is_unique)
-    print("Zero-claim policies:", (frequency["ClaimNb"] == 0).sum())
-    print("Severity rows:", len(severity))
-    print(severity.loc[severity["IDpol"] == 424, ["IDpol", "ClaimAmount"]])
+claim_counts = severity['IDpol'].value_counts()
+frequency['PaidClaimNb'] = frequency['IDpol'].map(claim_counts).fillna(0).astype(int)
